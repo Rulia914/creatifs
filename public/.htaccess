@@ -9,9 +9,9 @@ RewriteRule ^ - [L]
 # --------------------------------------------
 # RÈGLES DE RÉ-ÉCRITURE
 # DETAIL POST.show
-# PATTERN : /posts/id/slug 
-# URL : ?posts=show&id=x
-//RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])*$ ?posts=show&id=$1 [L]
+# PATTERN : /projets/id/slug 
+# URL : ?projets=show&id=x
+# RewriteRule ^projets\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])*$ ?projets=show&id=$1 [L]
 
 # ROUTE USERS.LOGIN
 # PATTERN: /users/login

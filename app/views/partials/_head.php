@@ -7,7 +7,7 @@
     <meta name="description" content="CREA'TIFS - portfolio capillaire, liste des projets" />
     <meta name="author" content="" />
 
-    <title><?php echo $title;?> - Design capill'Hair</title>
+    <title>CREAT'IFS - <?php echo $title;?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
