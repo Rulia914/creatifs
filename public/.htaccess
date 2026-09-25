@@ -8,10 +8,26 @@ RewriteRule ^ - [L]
 
 # --------------------------------------------
 # RÈGLES DE RÉ-ÉCRITURE
-# DETAIL POST.show
-# PATTERN : /projets/id/slug 
-# URL : ?projets=show&id=x
+# DETAIL PROJET.show
+# PATTERN : /projets/id/slug.html 
+# URL : ?projetId=x
 # RewriteRule ^projets\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])*$ ?projets=show&id=$1 [L]
+
+#AJOUT D'UN PROJET : FORMULAIRE
+#PATTERN : /projects/add/form
+#URL : index.php?projets=addForm
+RewriteRule ^projets\/add\/form$ index.php?projets=addForm [L]
+
+#AJOUT D'UN PROJET : INSERT
+#PATTERN : /projects/add/insert
+#URL : index.php?projets=add
+RewriteRule ^projets\/add\/insert$ index.php?projets=add [L]
+
+#SUPPRESSION D'UN PROJET
+#PATTERN : /projets/delete/x/slug
+#URL : index.php?projets=delete&id=x
+RewriteRule ^projets\/delete\/([1-9][0-9]*)$ index.php?projets=delete&id=$1 [L]
+
 
 # ROUTE USERS.LOGIN
 # PATTERN: /users/login
