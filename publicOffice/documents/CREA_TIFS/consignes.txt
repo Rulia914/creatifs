@@ -4,13 +4,13 @@ CONSIGNES EXAMEN SCRIPTS SERVEURS - SESSION 1 - 2022
   Accueil :
   PATTERN / ou /projects
   > Liste des projets (en afficher uniquement 10) avec une pagination pour voir les suivants
-  > Le texte doit être tronqué à 100 caractères
+  > Le texte doit être tronqué à 100 caractères ok
 
   Détails d'un projet
-  PATTERN: /projets/id/slug.html
+  PATTERN: /projets/id/slug.html ok
 
   Suppression d'un projet
-  PATTERN: /projets/delete/id/slug.html
+  PATTERN: /projets/delete/id/slug.html ok
 
  Ajout d'un projet
   PATTERN: /projects/add/form.html

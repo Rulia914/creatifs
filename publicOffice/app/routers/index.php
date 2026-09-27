@@ -1,20 +1,20 @@
 <?php
 
-//DETAIL PROJET.show
-//PATTERN : /projets/id/slug.html
-//URL : ?projetId=show&id=x
-//CTRL : projetsController
+//DETAIL PROJECT.show
+//PATTERN : /projects/id/slug.html
+//URL : ?projectId=show&id=x
+//CTRL : projectsController
 //ACTION : showAction
-if (isset($_GET['projetId'])):
-    include_once '../app/routers/projets.php';
+if (isset($_GET['projectId']) || isset($_GET['projects'])):
+    include_once '../app/routers/projects.php';
 
 //ROUTE PAR DEFAUT
 //PATTERN : ?
-//CTRL : ProjetsController
+//CTRL : ProjectsController
 //ACTION : index
 
 else :
-include_once '../app/controllers/projetsController.php';
-\App\Controllers\ProjetsController\indexAction($connexion);
+include_once '../app/controllers/projectsController.php';
+\App\Controllers\ProjectsController\indexAction($connexion);
 
 endif;

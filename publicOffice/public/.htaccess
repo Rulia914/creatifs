@@ -9,35 +9,30 @@ RewriteRule ^ - [L]
 # --------------------------------------------
 # RÈGLES DE RÉ-ÉCRITURE
 # DETAIL PROJET.show
-# PATTERN : /projets/id/slug.html 
-# URL : ?projetId=show&id=x
-RewriteRule ^projets/([1-9][0-9]*)/[a-z0-9]+(-[a-z0-9]+)*\.html$ index.php?projetId=show&id=$1 [L,QSA]
+# PATTERN : /projects/id/slug.html 
+# URL : ?projectId=show&id=x
+RewriteRule ^projects/([1-9][0-9]*)/[a-z0-9]+(-[a-z0-9]+)*\.html$ index.php?projectId=show&id=$1 [L]
 
-#AJOUT D'UN PROJET : FORMULAIRE
-#PATTERN : /projects/add/form
-#URL : index.php?projets=addForm
-RewriteRule ^projets\/add\/form$ index.php?projets=addForm [L]
+# FORMULAIRE D'AJOUT
+# PATTERN : /projects/add/form.html
+# URL : ?projectId=addForm
+RewriteRule ^projects\/add\/form\.html$ index.php?projectId=addForm [L]
 
-#AJOUT D'UN PROJET : INSERT
-#PATTERN : /projects/add/insert
-#URL : index.php?projets=add
-RewriteRule ^projets\/add\/insert$ index.php?projets=add [L]
+# TRAITEMENT DU FORMULAIRE D'AJOUT
+# PATTERN : /projects/add/insert.html
+# URL : ?projectId=addInsert
+RewriteRule ^projects\/add\/insert\.html$ index.php?projectId=addInsert [L]
 
-#SUPPRESSION D'UN PROJET
-#PATTERN : /projets/delete/x/slug
-#URL : index.php?projets=delete&id=x
-RewriteRule ^projets\/delete\/([1-9][0-9]*)$ index.php?projets=delete&id=$1 [L]
+# SUPPRESSION D'UN PROJET
+# PATTERN : /projects/delete/x/slug
+# URL : index.php?projects=delete&id=x
+RewriteRule ^projects\/delete\/([1-9][0-9]*)/\[a-z0-9]+(-[a-z0-9]+)*\.html$ index.php?projects=delete&id=$1 [L]
 
+# MODIFICATION D'UN FORMULAIRE
+# PATTERN : /projects/id/slug/edit/form.html
+# URL : index.php?projects=editForm&id=x
+RewriteRule ^projects/([1-9][0-9]*)/([^/]+)/edit/form\.html$ index.php?projects=editForm&id=$1 [L]
 
-# ROUTE USERS.LOGIN
-# PATTERN: /users/login
-# URL: ?users=login
-RewriteRule ^users/login$ ?users=login [L]
-
-# ROUTE USERS.LOGIN-FORM
-# PATTERN: /users/login-form
-# URL: ?users=login-form
-RewriteRule ^users/login-form$ ?users=login-form [L]
 
 # --------------------------------------------
 # FALLBACK
