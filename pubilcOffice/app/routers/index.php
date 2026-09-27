@@ -2,7 +2,7 @@
 
 //DETAIL PROJET.show
 //PATTERN : /projets/id/slug.html
-//URL : ?projetId=x
+//URL : ?projetId=show&id=x
 //CTRL : projetsController
 //ACTION : showAction
 if (isset($_GET['projetId'])):

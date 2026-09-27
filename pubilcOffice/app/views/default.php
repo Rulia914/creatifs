@@ -16,7 +16,7 @@
             <?php include '../app/views/partials/_main.php'; ?>
 
             <!-- Colonne latérale -->
-            <?php include '../app/views/partials/_laterale.php'; ?>
+            <?php include '../app/views/partials/_aside.php'; ?>
 
         </div>
         <!-- /.row -->

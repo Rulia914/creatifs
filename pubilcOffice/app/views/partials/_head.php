@@ -8,7 +8,8 @@
     <meta name="author" content="" />
 
     <title>CREAT'IFS - <?php echo $title;?></title>
-
+    <base href="<?php echo PUBLIC_BASE_URL; ?>">
+    
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Polices Bungee + Poppins : auto-hébergées, voir css/creatifs.css -->

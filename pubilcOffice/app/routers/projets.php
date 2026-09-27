@@ -4,12 +4,9 @@ use \App\Controllers\ProjetsController;
 
 include_once '../app/controllers/projetsController.php';
 
-switch ($_GET['projets']) {
+switch ($_GET['projetId']) {
     case 'show':
-        ProjetsController\showAction($connexion, $_GET['id']);
-        break;
-    case 'delete':
-        ProjetsController\deleteAction($connexion, $_GET['id']);
+        ProjetsController\showAction($connexion, (int) $_GET['id']);
         break;
     default:
         ProjetsController\indexAction($connexion);

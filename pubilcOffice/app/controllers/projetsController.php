@@ -2,7 +2,7 @@
 
 namespace App\Controllers\projetsController;
 
-use \App\Models\projetsModel;
+use \App\Models\ProjetsModel;
 use \PDO;
 
 function indexAction(PDO $connexion){

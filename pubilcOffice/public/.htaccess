@@ -10,8 +10,8 @@ RewriteRule ^ - [L]
 # RÈGLES DE RÉ-ÉCRITURE
 # DETAIL PROJET.show
 # PATTERN : /projets/id/slug.html 
-# URL : ?projetId=x
-# RewriteRule ^projets\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])*$ ?projets=show&id=$1 [L]
+# URL : ?projetId=show&id=x
+RewriteRule ^projets/([1-9][0-9]*)/[a-z0-9]+(-[a-z0-9]+)*\.html$ index.php?projetId=show&id=$1 [L,QSA]
 
 #AJOUT D'UN PROJET : FORMULAIRE
 #PATTERN : /projects/add/form

@@ -1,19 +1,21 @@
 <?php /** @var array $projets */ ?>
 
-<?php foreach ($projets as $projet): ?>
+<?php foreach ($projets as $projet):
+    $urlProjet = "projets/" . $projet['id'] . "/" . \Core\Helpers\slugify($projet['titre']) . ".html";
+?>
 <!-- Projet 1 -->
 <article class="ct-card">
     <div class="row">
         <div class="col-md-4">
-            <a href="?projetId=<?php echo $projet["id"];?>">
+            <a href="<?php echo $urlProjet;?>">
                 <img class="img-fluid mb-3 mb-md-0" src="images/<?php echo $projet['image'];?>" alt="Frange Kamikaze" />
             </a>
         </div>
         <div class="col-md-8">
-            <h3><a href="?projetId=<?php echo $projet["id"];?>">Frange Kamikaze</a></h3>
-            <p class="ct-byline">par <a href="#"><?php echo $projet['titre'];?></a> · <?php echo \Core\Helpers\dateFormator($projet['dateCreation'], 'd'); ?> <?php echo \Core\Helpers\dateFormator($projet['dateCreation'], 'M'); ?> <?php echo \Core\Helpers\dateFormator($projet['dateCreation'], 'Y'); ?> 2017</p>
+            <h3><a href="<?php echo $urlProjet;?>">Frange Kamikaze</a></h3>
+            <p class="ct-byline">par <a href="#"><?php echo $projet['titre'];?></a> · <?php echo \Core\Helpers\dateFormator($projet['dateCreation'], 'd'); ?> <?php echo \Core\Helpers\dateFormator($projet['dateCreation'], 'M'); ?> <?php echo \Core\Helpers\dateFormator($projet['dateCreation'], 'Y'); ?></p>
             <p><?php echo \Core\Helpers\truncate($projet['texte'], 100);?></p>
-            <a class="ct-btn ct-btn--primary ct-btn--sm" href="?projetId=<?php echo $projet["id"];?>">Voir le projet</a>
+            <a class="ct-btn ct-btn--primary ct-btn--sm" href="<?php echo $urlProjet;?>">Voir le projet</a>
         </div>
     </div>
 </article>
