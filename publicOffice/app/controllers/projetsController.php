@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\projetsController;
+namespace App\Controllers\ProjetsController;
 
 use \App\Models\ProjetsModel;
 use \PDO;
@@ -32,4 +32,10 @@ function showAction (PDO $connexion, int $id){
     include '../app/views/projets/show.php';
     $content = ob_get_clean();
     }
+
+function deleteAction(PDO $connexion, int $id){
+    
+    ProjetsModel\deleteOneById($connexion, $id);
+    header('Location: '. PUBLIC_BASE_URL);
+}
 

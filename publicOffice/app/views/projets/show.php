@@ -1,9 +1,10 @@
 <?php 
-/** @var array $projet */;
+/** @var array $projet 
+ * @var array $creatif*/;
 ?>
 
     <h1>Frange Kamikaze</h1>
-    <p class="ct-byline">par <a href="#">Mister Univ'Hair</a> · 17 août 2017</p>
+    <p class="ct-byline">par <a href="#"><?php echo $projet['pseudo'];?></a> · 17 août 2017</p>
 
     <div class="mb-4">
         <!-- routes: /projets/id/slug/edit/form.html — /projets/delete/id/slug.html -->
