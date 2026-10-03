@@ -92,7 +92,7 @@ function insertOne(PDO $connexion, array $data): int
 }
 
 //Modifie les données d'un projet existant
-function editOneById(PDO $connexion, array $data, int $id): bool
+function editOneById(PDO $connexion, int $id, array $data): bool
 {
     // Requête SQL de mise à jour
     $sql = 'UPDATE projets 

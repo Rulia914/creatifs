@@ -28,7 +28,11 @@ switch ($action) {
         break;
     // Affiche le formulaire pré-rempli pour modifier un projet existant
     case 'editForm':
-        ProjectsController\editFormAction($connexion, (int) $_GET['id']);
+        \App\Controllers\ProjectsController\editFormAction($connexion, (int) $_GET['id']);
+        break;
+    // Traite et enregistre les modifications d'un projet existant
+    case 'editUpdate':
+        \App\Controllers\ProjectsController\editUpdateAction($connexion, (int) $_GET['id']);
         break;
     // Action par défaut : affiche la liste complète des projets
     default:

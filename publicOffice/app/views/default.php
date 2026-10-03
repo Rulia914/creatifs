@@ -16,7 +16,15 @@
             <?php include '../app/views/partials/_main.php'; ?>
 
             <!-- Colonne latérale -->
-            <?php include '../app/views/partials/_aside.php'; ?>
+
+            <?php
+            include_once '../app/controllers/asideController.php';
+            \App\Controllers\AsideController\renderAction(
+                $connexion,
+                $GLOBALS['asideProject'] ?? null,
+                $GLOBALS['asideProjectTags'] ?? []
+            );
+            ?>
 
         </div>
         <!-- /.row -->

@@ -29,13 +29,17 @@ function indexAction(PDO $connexion){
 function showAction (PDO $connexion, int $id){
     // 1. On inclut le modèle
     include_once '../app/models/projectsModel.php';
+    include_once '../app/models/tagsModel.php';
     
     // 2. On récupère les informations du projet correspondant à l'ID passé en paramètre
     $project = ProjectsModel\findOneById($connexion, $id); 
+    $tags = \App\Models\TagsModel\findAllByProjectId($connexion, $id);
 
     // 3. On définit le titre de la page avec le nom du projet
-    GLOBAL $title, $content;
+    GLOBAL $title, $content, $asideProject, $asideProjectTags;
     $title = $project['titre'];    
+    $asideProject = $project;
+    $asideProjectTags = $tags;
 
     // 4. On capture le contenu HTML de la vue de détail
     ob_start();
@@ -106,18 +110,46 @@ function editFormAction(PDO $connexion, int $id) {
 
     GLOBAL $project, $title, $content;
 
-    // 1. On va chercher les données du projet existant en BDD
-    $project = \App\Models\ProjectsModel\findOneById($connexion, $id);
+    // 1. On récupère les données du projet à modifier
+    $project = ProjectsModel\findOneById($connexion, $id);
 
-    // 2. Sécurité : Si l'ID ne correspond à aucun projet, on affiche un message d'erreur
-    if (!$project) {
-        die("Erreur : Aucun projet trouvé avec l'ID " . $id);
-    }
-
+ 
+  
     $title = "Modification : " . $project['titre'];
 
-    // 3. On réutilise le même formulaire d'ajout, mais pré-rempli avec les données enregistrées
+    // 3. On réutilise le formulaire d'ajout en le pré-remplissant
     ob_start();
     include '../app/views/projects/addForm.php';
     $content = ob_get_clean();
+}
+
+//Traite la soumission du formulaire de modification
+function editUpdateAction(PDO $connexion, int $id) {
+    include_once '../app/models/projectsModel.php';
+
+    // 1. On récupère les données actuelles du projet
+    $project = ProjectsModel\findOneById($connexion, $id);
+    
+    // 2. On rassemble les données envoyées par le formulaire
+    $data = [
+        'titre'   => $_POST['title'],
+        'texte'   => $_POST['text'],
+        'image'   => $project['image'],
+        'creatif' => (int) ($_POST['creatif'] ?? $project['creatif'])
+    ];
+
+    // 3. On conserve l'image actuelle si aucune nouvelle image n'est envoyée
+    if (!empty($_FILES['image']['name'])) {
+        $imageName = $_FILES['image']['name'];
+        move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . $imageName);
+        $data['image'] = $imageName;
+    }
+
+    // 4. On met à jour le projet en base de données
+    ProjectsModel\editOneById($connexion, $id, $data);
+
+    // 5. On génère une URL lisible (slug) et on redirige vers le projet modifié
+    $slug = \Core\Helpers\slugify($data['titre']);
+    header('Location: ' . PUBLIC_BASE_URL . "projects/{$id}/{$slug}.html");
+    exit(); // On stoppe l'exécution du script après la redirection
 }
