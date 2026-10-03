@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-6">
                 <p class="lead" style="font-weight: 600">
-                    Une frange tracée au feutre noir, parce que la vraie audace ne pousse pas en un jour.
+                    <?php echo $project['resume']?>
                 </p>
                 <hr />
                 <p>
