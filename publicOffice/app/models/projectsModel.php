@@ -7,7 +7,7 @@ namespace App\Models\projectsModel;
 use \PDO;
 
 //Récupère une liste de projects (limité à $limit résultats) avec les informations du créatif associé
-function findAll(PDO $connexion, int $limit = 10): array
+function findAll(PDO $connexion): array
 {
     // Requête SQL pour récupérer tous les champs du projet + les infos de son créatif
     $sql = 'SELECT 
@@ -17,15 +17,9 @@ function findAll(PDO $connexion, int $limit = 10): array
             c.bio AS bio, 
             c.image AS creatif_image
             FROM projets p
-            LEFT JOIN creatifs c ON p.creatif = c.id
-            LIMIT :limit;';
+            LEFT JOIN creatifs c ON p.creatif = c.id';
 
-    // Préparation et exécution de la requête avec sécurisation du paramètre :limit
-    $rs = $connexion->prepare($sql);
-    $rs->bindValue(':limit', $limit, PDO::PARAM_INT);
-    $rs->execute();
-
-    // Retourne un tableau contenant tous les projets trouvés
+    $rs = $connexion->query($sql);
     return $rs->fetchAll(PDO::FETCH_ASSOC);
 }
 

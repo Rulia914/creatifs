@@ -12,7 +12,7 @@
                   <img src="images/<?php echo $project['creatif_image']; ?>" alt="<?php echo $project['pseudo']; ?>" />
                   <div>
                     <strong><a href="#"><?php echo $project['pseudo']; ?></a></strong>
-                    <p><?php echo $project['bio']; ?></p>
+                    <p><?php echo \core\Helpers\truncate ($project['bio']); ?></p>
                   </div>
                 </div>
               <?php else: ?>
@@ -21,7 +21,7 @@
                   <li>
                   <img class="ct-avatar" src="images/<?php echo $creatif['image'];?>" alt="<?php echo $creatif['pseudo'];?>" />
                   <a href="#"><?php echo $creatif['pseudo'];?></a>
-                  <span class="ct-count">4</span>
+                  <span class="ct-count"><?php echo $creatif['projectCount']; ?></span>
                   </li>
                 <?php endforeach;?>
               </ul>

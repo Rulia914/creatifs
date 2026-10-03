@@ -2,7 +2,8 @@
 
 /** @var array $projects
  * @var array $project 
- * @var array $creatif*/ ?>
+ * @var array $creatif
+ * @var array $tags*/ ?>
 
 <div class="col-lg-8 py-3">
     <!--
@@ -54,16 +55,21 @@
         </select>
 
         <label>Tags <span style="font-weight:400;font-size:.8rem;color:#4a3a5a">(facultatif)</span></label>
-        <div class="ct-tag-choice">
-            <label><input type="checkbox" name="tags[]" value="1" /> Vintage</label>
-            <label><input type="checkbox" name="tags[]" value="2" /> Alimentation</label>
-            <label><input type="checkbox" name="tags[]" value="3" /> Géométrie</label>
-            <label><input type="checkbox" name="tags[]" value="4" /> Couleur</label>
-            <label><input type="checkbox" name="tags[]" value="5" /> Figuratif</label>
-            <label><input type="checkbox" name="tags[]" value="6" /> Baptême</label>
-            <label><input type="checkbox" name="tags[]" value="7" /> Abstract</label>
-            <label><input type="checkbox" name="tags[]" value="8" /> Inclassable</label>
-        </div>
+        <?php foreach ($tags as $tag): ?>
+    <div class="form-check">
+        <input 
+            class="form-check-input" 
+            type="checkbox" 
+            name="tags[]" 
+            value="<?php echo $tag['id']; ?>" 
+            id="tag-<?php echo $tag['id']; ?>"
+            <?php echo !empty($tag['is_checked']) ? 'checked' : ''; ?>
+        >
+        <label class="form-check-label" for="tag-<?php echo $tag['id']; ?>">
+            <?php echo $tag['nom']; ?>
+        </label>
+    </div>
+<?php endforeach; ?>
 
         <div>
             <input class="ct-btn ct-btn--primary" type="submit" value="Enregistrer" />

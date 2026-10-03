@@ -1,5 +1,8 @@
 <?php /** @var array $projects 
-  * @var array $creatif*/ ?>
+        * @var array $creatif
+        * @var array $totalPages
+        * @var array $currentPage
+        */ ?>
 
 <?php foreach ($projects as $project):
     $urlProject = "projects/" . $project['id'] . "/" . \Core\Helpers\slugify($project['titre']) . ".html";
@@ -21,13 +24,32 @@
     </div>
 </article>
 <?php endforeach;?>
-
-<nav aria-label="Navigation entre les pages de projets">
-    <ul class="pagination ct-pagination" style="justify-content: center">
-        <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
-    </ul>
+<?php if ($totalPages > 1): ?>
+    <nav aria-label="Navigation des pages">
+        <ul class="pagination ct-pagination" style="justify-content: center">
+    
+            <!-- Bouton Précédent -->
+            <?php if ($currentPage > 1): ?>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<?= (int)$currentPage - 1; ?>">Précédent</a>
+                </li>
+            <?php endif; ?>
+    
+            <!-- Numéros de page -->
+            <?php for ($page = 1; $page <= $totalPages; $page++): ?>
+                <li class="page-item <?= ($page === $currentPage) ? 'active' : ''; ?>">
+                    <a class="page-link" href="?page=<?= $page; ?>"><?= $page; ?></a>
+                </li>
+            <?php endfor; ?>
+    
+            <!-- Bouton Suivant -->
+            <?php if ($currentPage < $totalPages): ?>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<?= $currentPage + 1; ?>">Suivant</a>
+                </li>
+            <?php endif; ?>
+    
+        </ul>
+    </nav>
+    <?php endif; ?>
 </nav>

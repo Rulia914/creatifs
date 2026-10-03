@@ -1,12 +1,13 @@
 <?php 
 /** @var array $project 
- * @var array $creatif*/;
+ * @var array $creatif
+ * @var array $tags*/;
 ?>
 <?php 
     $urlEditProject = "projects/" . $project['id'] . "/" . \Core\Helpers\slugify($project['titre']) . "/edit/form.html";
 ?>
     <h1><?php echo $project['titre'];?></h1>
-    <p class="ct-byline">par <a href="#"><?php echo $project['pseudo'];?></a> · 17 août 2017</p>
+    <p class="ct-byline">par <a href="#"><?php echo $project['pseudo'];?></a> · <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'd'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'M'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'Y'); ?></p>
 
     <div class="mb-4">
         <!-- routes: /projects/id/slug/edit/form.html — /projects/delete/id/slug.html -->
@@ -29,14 +30,15 @@
                 </p>
                 <hr />
                 <!-- Tags du projet (affichés seulement s'il y en a au moins un) -->
-            <?php if (!empty($tags)): ?>
-                <hr />
+
                 <ul class="ct-tags">
                     <?php foreach ($tags as $tag): ?>
-                        <li><a class="ct-tag" href="#"><?php echo $tag['nom']; ?></a></li>
+                        <?php if (!empty($tag['is_checked'])): ?>
+                            <li><a class="ct-tag" href="#"><?php echo htmlspecialchars($tag['nom']); ?></a></li>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
-            <?php endif; ?>
+            
             </div>
         </div>
     </article>
