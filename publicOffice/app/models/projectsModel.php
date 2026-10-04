@@ -37,7 +37,6 @@ function findOneById(PDO $connexion, int $id): array
         LEFT JOIN creatifs c ON p.creatif = c.id
         WHERE p.id = :id;';
 
-    // Préparation et exécution de la requête
     $rs = $connexion->prepare($sql);
     $rs->bindValue(':id', $id, PDO::PARAM_INT);
     $rs->execute();

@@ -1,10 +1,5 @@
 <?php
 
-// consigne : aside sur toutes les pages, donc on l'appelle ici dans le routeur principal
-//include_once '../app/controllers/asideController.php';
-//\App\Controllers\AsideController\renderAction($connexion);
-
-
 //DETAIL PROJECT.show
 //PATTERN : /projects/id/slug.html
 //URL : ?projectId=show&id=x

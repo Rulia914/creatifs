@@ -3,6 +3,7 @@
  * @var array $creatif
  * @var array $tags*/;
 ?>
+<!-- Main : colonne principale contenant une fiche projet complète qu'il est possible de modifier ou supprimer -->
 <?php 
     $urlEditProject = "projects/" . $project['id'] . "/" . \Core\Helpers\slugify($project['titre']) . "/edit/form.html";
 ?>

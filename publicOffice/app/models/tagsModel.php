@@ -6,6 +6,7 @@ use \PDO;
 
 function findAll(PDO $connexion): array
 {
+    // On sélectionne tous les tags
     $sql = "SELECT *
             FROM tags
             ORDER BY id;";
@@ -33,6 +34,7 @@ function findAllByProjectId(PDO $connexion, int $projectId): array
 
 function insertByProjetId(PDO $connexion, int $projectId, array $tagIds): void
 {
+    // On insère les liaisons entre le projet et les tags sélectionnés
     $sql = "INSERT INTO projets_has_tags (projet, tag)
             VALUES (:projet, :tag);";
 
@@ -45,9 +47,10 @@ function insertByProjetId(PDO $connexion, int $projectId, array $tagIds): void
         $rs->execute();
     }
 }
-// Supprime toutes les liaisons de tags pour un projet
+
 function deleteByProjectId(PDO $connexion, int $projectId): void
 {
+    // On supprime toutes les liaisons entre le projet et les tags
     $sql = "DELETE FROM projets_has_tags
             WHERE projet = :projectId;";
 

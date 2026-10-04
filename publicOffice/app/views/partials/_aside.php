@@ -1,7 +1,7 @@
 <?php /** @var array $asideCreatifs 
         * @var array $asideTags 
         * @var array $project */ ?>
-
+<!-- Aside : colonne latérale contenant les créatifs avec le nombre de projets (ou le créatif avec un cours morceau de la bio quand on clique sur le projet) et les tags-->
 <div class="col-lg-4">
           <!-- Widget Créa'tif -->
           <div class="ct-side-card">

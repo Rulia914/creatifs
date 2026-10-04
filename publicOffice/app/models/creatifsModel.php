@@ -5,6 +5,7 @@ namespace App\Models\CreatifsModel;
 use \PDO;
 function findAll(PDO $connexion): array
 {
+    // Requête SQL pour récupérer tous les créatifs avec le nombre de projets associés
     $sql = "SELECT 
                 c.id, 
                 c.pseudo, 

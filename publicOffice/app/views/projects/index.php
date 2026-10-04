@@ -3,11 +3,11 @@
         * @var array $totalPages
         * @var array $currentPage
         */ ?>
-
+<!-- Main : colonne principale contenant les projets -->
 <?php foreach ($projects as $project):
     $urlProject = "projects/" . $project['id'] . "/" . \Core\Helpers\slugify($project['titre']) . ".html";
 ?>
-<!-- Projet 1 -->
+
 <article class="ct-card">
     <div class="row">
         <div class="col-md-4">
@@ -24,6 +24,9 @@
     </div>
 </article>
 <?php endforeach;?>
+
+<!-- Pagination l'affichage se limite à 10 projets par page. Il est possible de modifier à partir de la fonction indexAction-->
+
 <?php if ($totalPages > 1): ?>
     <nav aria-label="Navigation des pages">
         <ul class="pagination ct-pagination" style="justify-content: center">
