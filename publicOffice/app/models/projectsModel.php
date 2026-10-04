@@ -1,7 +1,7 @@
 <?php
 
 // Définition de l'espace de nom du modèle (utilisé pour appeler ces fonctions depuis le contrôleur)
-namespace App\Models\projectsModel;
+namespace App\Models\ProjectsModel;
 
 // Importation de la classe PDO pour interagir avec la base de données
 use \PDO;
@@ -20,6 +20,26 @@ function findAll(PDO $connexion): array
             LEFT JOIN creatifs c ON p.creatif = c.id';
 
     $rs = $connexion->query($sql);
+    return $rs->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function findAllByCreatifId(PDO $connexion, int $creatifId): array
+{
+    // Requête SQL pour récupérer tous les champs du projet + les infos de son créatif, filtrée par l'ID du créatif
+    $sql = 'SELECT
+                p.*,
+                c.id AS creatif_id,
+                c.pseudo AS pseudo,
+                c.bio AS bio,
+                c.image AS creatif_image
+            FROM projets p
+            LEFT JOIN creatifs c ON p.creatif = c.id
+            WHERE p.creatif = :creatifId;';
+
+    $rs = $connexion->prepare($sql);
+    $rs->bindValue(':creatifId', $creatifId, PDO::PARAM_INT);
+    $rs->execute();
+
     return $rs->fetchAll(PDO::FETCH_ASSOC);
 }
 

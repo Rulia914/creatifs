@@ -14,6 +14,10 @@ switch ($action) {
     case 'show':
         ProjectsController\showAction($connexion, (int) $_GET['id']);
         break;
+    // Affiche les projets d'un créatif
+    case 'creatif':
+        ProjectsController\indexAction($connexion, (int) $_GET['id']);
+        break;
     // Supprime un projet précis
     case 'delete':
         ProjectsController\deleteAction($connexion, (int) $_GET['id']);

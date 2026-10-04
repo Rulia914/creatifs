@@ -1,7 +1,7 @@
-<?php /** @var array $projects 
-        * @var array $creatif
+<?php /** @var array $projects
         * @var array $totalPages
         * @var array $currentPage
+        * @var string $paginationUrl
         */ ?>
 <!-- Main : colonne principale contenant les projets -->
 <?php foreach ($projects as $project):
@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-8">
             <h3><a href="<?php echo $urlProject;?>"><?php echo $project['titre'] ?></a></h3>
-            <p class="ct-byline">par <a href="#"><?php echo $project['pseudo'];?></a> · <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'd'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'M'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'Y'); ?></p>
+            <p class="ct-byline">par <a href="?projects=creatif&id=<?php echo (int) $project['creatif_id']; ?>"><?php echo $project['pseudo'];?></a> · <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'd'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'M'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'Y'); ?></p>
             <p><?php echo \Core\Helpers\truncate($project['texte'], 100);?></p>
             <a class="ct-btn ct-btn--primary ct-btn--sm" href="<?php echo $urlProject;?>">Voir le projet</a>
         </div>
@@ -34,21 +34,21 @@
             <!-- Bouton Précédent -->
             <?php if ($currentPage > 1): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= (int)$currentPage - 1; ?>">Précédent</a>
+                    <a class="page-link" href="<?php echo $paginationUrl . ((int) $currentPage - 1); ?>">Précédent</a>
                 </li>
             <?php endif; ?>
     
             <!-- Numéros de page -->
             <?php for ($page = 1; $page <= $totalPages; $page++): ?>
-                <li class="page-item <?= ($page === $currentPage) ? 'active' : ''; ?>">
-                    <a class="page-link" href="?page=<?= $page; ?>"><?= $page; ?></a>
+                <li class="page-item <?php echo ($page === $currentPage) ? 'active' : ''; ?>">
+                    <a class="page-link" href="<?php echo $paginationUrl . $page; ?>"><?php echo $page; ?></a>
                 </li>
             <?php endfor; ?>
     
             <!-- Bouton Suivant -->
             <?php if ($currentPage < $totalPages): ?>
                 <li class="page-item">
-                    <a class="page-link" href="?page=<?= $currentPage + 1; ?>">Suivant</a>
+                    <a class="page-link" href="<?php echo $paginationUrl . ($currentPage + 1); ?>">Suivant</a>
                 </li>
             <?php endif; ?>
     

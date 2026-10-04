@@ -11,7 +11,7 @@
                 <div class="ct-profile">
                   <img src="images/<?php echo $project['creatif_image']; ?>" alt="<?php echo $project['pseudo']; ?>" />
                   <div>
-                    <strong><a href="#"><?php echo $project['pseudo']; ?></a></strong>
+                    <strong><a href="?projects=creatif&id=<?php echo (int) $project['creatif_id']; ?>"><?php echo $project['pseudo']; ?></a></strong>
                     <p><?php echo \core\Helpers\truncate ($project['bio']); ?></p>
                   </div>
                 </div>
@@ -20,7 +20,7 @@
                 <?php foreach ($asideCreatifs as $creatif):?>
                   <li>
                   <img class="ct-avatar" src="images/<?php echo $creatif['image'];?>" alt="<?php echo $creatif['pseudo'];?>" />
-                  <a href="#"><?php echo $creatif['pseudo'];?></a>
+                  <a href="?projects=creatif&id=<?php echo (int) $creatif['id']; ?>"><?php echo $creatif['pseudo'];?></a>
                   <span class="ct-count"><?php echo $creatif['projectCount']; ?></span>
                   </li>
                 <?php endforeach;?>

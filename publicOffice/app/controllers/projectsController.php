@@ -8,7 +8,7 @@ use \App\Models\ProjectsModel;
 use \App\Models\TagsModel;
 use \PDO;
 
-function indexAction(PDO $connexion)
+function indexAction(PDO $connexion, ?int $creatifId = null)
 {
     // 1. On inclut le fichier du modèle pour accéder aux fonctions BDD
     include_once '../app/models/projectsModel.php';
@@ -16,7 +16,13 @@ function indexAction(PDO $connexion)
     // --- PAGINATION ---
 
     // 1. Récupération de l'ensemble des projets depuis le modèle
-    $allProjects = ProjectsModel\findAll($connexion);
+    if ($creatifId === null) {
+        $allProjects = ProjectsModel\findAll($connexion);
+        $paginationUrl = '?page=';
+    } else {
+        $allProjects = ProjectsModel\findAllByCreatifId($connexion, $creatifId);
+        $paginationUrl = '?projects=creatif&id=' . $creatifId . '&page=';
+    }
 
     // 2. Configuration de la pagination
     $limit = 10; // Nombre maximum de projets affichés par page
@@ -41,7 +47,11 @@ function indexAction(PDO $connexion)
 
     // On déclare les variables globales pour transmettre les données au layout
     global $title, $content;
-    $title = 'Accueil';
+    $title = $creatifId === null
+        ? 'Accueil'
+        : (!empty($allProjects)
+            ? 'Projets de ' . $allProjects[0]['pseudo']
+            : 'Projets du créatif');
 
     // Capture du HTML de la vue avec les variables $projects, $currentPage et $totalPages disponibles
     ob_start();

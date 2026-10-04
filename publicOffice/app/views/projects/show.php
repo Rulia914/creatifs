@@ -1,6 +1,5 @@
 <?php 
 /** @var array $project 
- * @var array $creatif
  * @var array $tags*/;
 ?>
 <!-- Main : colonne principale contenant une fiche projet complète qu'il est possible de modifier ou supprimer -->
@@ -8,7 +7,7 @@
     $urlEditProject = "projects/" . $project['id'] . "/" . \Core\Helpers\slugify($project['titre']) . "/edit/form.html";
 ?>
     <h1><?php echo $project['titre'];?></h1>
-    <p class="ct-byline">par <a href="#"><?php echo $project['pseudo'];?></a> · <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'd'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'M'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'Y'); ?></p>
+    <p class="ct-byline">par <a href="?projects=creatif&id=<?php echo (int) $project['creatif_id']; ?>"><?php echo $project['pseudo'];?></a> · <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'd'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'M'); ?> <?php echo \Core\Helpers\dateFormator($project['dateCreation'], 'Y'); ?></p>
 
     <div class="mb-4">
         <!-- routes: /projects/id/slug/edit/form.html — /projects/delete/id/slug.html -->
